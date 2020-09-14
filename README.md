@@ -8,11 +8,13 @@ Added `Qf` and `LL` command modifiers that put the results of `ilist` and
 `dlist` commands into the quifix and location lists, respectively. For example:
 
 > :Qf ilist /fleurs/
+
 > :LL ilist /fleurs/
 
 It  can also serve as an alternative to `:browse oldfiles`.
 
 > :Qf oldfiles
+
 > :LL oldfiles
 
 The commands try distinguish between the output formats of `ilist`/`dlist` and
