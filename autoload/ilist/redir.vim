@@ -23,16 +23,24 @@ function s:BuildQEntries(lines)
     " Our results may span multiple files so we need to build a relatively complex list based on filenames.
     let filename   = ""
     let qf_entries = []
-    for l:line in a:lines
-        if l:line !~ '^\s*\d\+:'
-            let filename = fnamemodify(l:line, ':p:.')
-        else
-            let lnum = split(l:line)[1]
-            let text = substitute(l:line, '^\s*.\{-}:\s*\S\{-}\s', "", "")
-            " let col  = match(text, a:selection ? search_pattern : expand("<cword>")) + 1
-            call add(qf_entries, {"filename" : filename, "lnum" : lnum, "col" : 1, "vcol" : 1, "text" : text})
-        endif
-    endfor
+    if a:lines[0] =~# '^\d\+: '
+        for l:line in a:lines
+            let filename0 = matchlist(l:line,'^\d\+: \(.*\)$')[1]
+            let filename = fnamemodify(l:filename0, ':p:.')
+            call add(qf_entries, {"filename" : l:filename, "lnum" : 1, "col" : 1, "vcol" : 1, "text" : 'oldfile'})
+        endfor
+    else
+        for l:line in a:lines
+            if l:line !~ '^\s*\d\+:'
+                let filename = fnamemodify(l:line, ':p:.')
+            else
+                let lnum = split(l:line)[1]
+                let text = substitute(l:line, '^\s*.\{-}:\s*\S\{-}\s', "", "")
+                " let col  = match(text, a:selection ? search_pattern : expand("<cword>")) + 1
+                call add(l:qf_entries, {"filename" : l:filename, "lnum" : l:lnum, "col" : 1, "vcol" : 1, "text" : l:text})
+            endif
+        endfor
+    endif
     return qf_entries
 endfunction
 
