@@ -1,5 +1,5 @@
 function ilist#redir#ExpToLocation(cmd)
-    let l:entries = eval(a:cmd)
+    let l:entries = a:cmd
     let l:qf_entries = s:BuildEntries(l:entries)
     " Build the quickfix list from our results.
     call setloclist(0,l:qf_entries)
@@ -19,7 +19,7 @@ function ilist#redir#CmdToLocation(cmd)
 endfunction
 
 function ilist#redir#ExpToQuickfix(cmd)
-    let l:entries = eval(a:cmd)
+    let l:entries = a:cmd
     let l:qf_entries = s:BuildEntries(l:entries)
     " Build the quickfix list from our results.
     call setqflist(l:qf_entries)
