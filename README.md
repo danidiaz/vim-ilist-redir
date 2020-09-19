@@ -36,3 +36,7 @@ Useful with `:Qfe` and `:LLe`:
 
 > :LLe Arguments()
 
+### some useful links
+
+[Colder quickfix lists](https://vimways.org/2018/colder-quickfix-lists/)
+
