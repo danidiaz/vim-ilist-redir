@@ -30,7 +30,7 @@ endfunction
 
 function ilist#redir#CmdToQuickfix(cmd)
     let l:lines = split(execute(a:cmd), "\n")
-    let l:qf_entries = s:BuildIlistEntries(l:lines)
+    let l:qf_entries = s:IlistOutputBuildEntries(l:lines)
     " Build the quickfix list from our results.
     call setqflist(l:qf_entries)
     " Open the quickfix window if there is something to show.
